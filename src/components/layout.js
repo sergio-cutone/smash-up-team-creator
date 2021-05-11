@@ -5,12 +5,15 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import * as React from "react"
+import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
+import { StaticImage } from "gatsby-plugin-image"
 import { useStaticQuery, graphql } from "gatsby"
-
 import Header from "./header"
+import Login from "../components/login.js"
+import firestore from "../services/firestore"
 import "./layout.css"
+import "@fontsource/open-sans"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -22,26 +25,108 @@ const Layout = ({ children }) => {
       }
     }
   `)
+  const [email, emailState] = useState(false)
+  const [emailError, emailErrorState] = useState(false)
+  const [password, passwordState] = useState(false)
+  const [passwordError, passwordErrorState] = useState(false)
+  const [signedIn, signedInState] = useState(false)
+  const [signInError, signInErrorState] = useState(false)
+  const handleEmail = value => {
+    emailState(value)
+  }
 
+  useEffect(() => {
+    signedIn ? signedInState(true) : signedInState(false)
+  }, [signedIn])
+
+  const handlePassword = value => {
+    passwordState(value)
+  }
+  const handleSignIn = () => {
+    emailErrorState(!email ? true : false)
+    passwordErrorState(!password ? true : false)
+    if (!email || !password) return false
+    firestore
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        // Signed in
+        signInErrorState(false)
+        signedInState(true)
+        // ...
+      })
+      .catch(error => {
+        var errorCode = error.code
+        var errorMessage = error.message
+        signedInState(false)
+        signInErrorState(error.message)
+        console.log(errorCode, errorMessage)
+      })
+  }
+  const handleSignOut = () => {
+    firestore
+      .auth()
+      .signOut()
+      .then(() => {
+        signedInState(false)
+      })
+      .catch(error => {
+        // An error happened.
+        console.log(error)
+      })
+  }
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
+      {signedIn || (
+        <Login
+          signedIn={signedIn}
+          signInError={signInError}
+          onEmail={handleEmail}
+          onPassword={handlePassword}
+          onSignIn={handleSignIn}
+          emailError={emailError}
+          passwordError={passwordError}
+        />
+      )}
+      <Header
+        signedIn={signedIn}
+        siteTitle={data.site.siteMetadata?.title || `Title`}
+        onSignOut={handleSignOut}
+      />
+      <div className="p-5 max-w-screen-lg mx-auto text-center">
         <main>{children}</main>
         <footer
           style={{
             marginTop: `2rem`,
           }}
         >
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
+          © {new Date().getFullYear()} Sergio Cutone
+          <div className="mx-auto mt-2">
+            <StaticImage
+              src="../images/gatsby.png"
+              alt="Gatsby logo"
+              title="Gatsby logo"
+              placeholder="blurred"
+              layout="fullWidth"
+              className="inline-block w-10 h-10 mr-2 rounded-full bg-white"
+            />
+            <StaticImage
+              src="../images/tailwindcss.png"
+              alt="Tailwind CSS logo"
+              title="Tailwind CSS logo"
+              placeholder="blurred"
+              layout="fullWidth"
+              className="inline-block w-10 h-10 mr-2 rounded-full bg-white"
+            />
+            <StaticImage
+              src="../images/firebase.png"
+              alt="Firebase logo"
+              title="Firebase logo"
+              placeholder="blurred"
+              layout="fullWidth"
+              className="inline-block w-10 h-10 rounded-full bg-white"
+            />
+          </div>
         </footer>
       </div>
     </>

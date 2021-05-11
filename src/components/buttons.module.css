@@ -1,0 +1,45 @@
+.unselected {
+  box-shadow: 3px 4px 0px 0px #525252;
+  background: linear-gradient(to bottom, #ffffff 5%, #c2c2c2 100%);
+  background-color: #ffffff;
+  border-radius: 15px;
+  border: 1px solid #c2c2c2;
+  display: inline-block;
+  cursor: pointer;
+  color: #000000;
+  font-weight: bold;
+  padding: 7px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
+}
+.unselected:hover {
+  background: linear-gradient(to bottom, #c2c2c2 5%, #ffffff 100%);
+  background-color: #c2c2c2;
+}
+.unselected:active {
+  position: relative;
+  top: 1px;
+}
+
+.selected {
+  box-shadow: 3px 4px 0px 0px #525252;
+  background: linear-gradient(to bottom, #c5d846 5%, #7f8c2d 100%);
+  background-color: #c5d846;
+  border-radius: 15px;
+  border: 1px solid #7f8c2d;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 7px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #000000;
+}
+.selected:hover {
+  background: linear-gradient(to bottom, #7f8c2d 5%, #c5d846 100%);
+  background-color: #7f8c2d;
+}
+.selected:active {
+  position: relative;
+  top: 1px;
+}
