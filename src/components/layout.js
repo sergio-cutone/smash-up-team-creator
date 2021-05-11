@@ -10,6 +10,7 @@ import PropTypes from "prop-types"
 import { StaticImage } from "gatsby-plugin-image"
 import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
+import Footer from "./footer"
 import Login from "../components/login.js"
 import firestore from "../services/firestore"
 import "./layout.css"
@@ -77,6 +78,15 @@ const Layout = ({ children }) => {
   }
   return (
     <>
+      <Header
+        signedIn={signedIn}
+        siteTitle={data.site.siteMetadata?.title || `Title`}
+        onSignOut={handleSignOut}
+      />
+      <main className="p-5 max-w-screen-lg mx-auto text-center">
+        {children}
+      </main>
+      <Footer />
       {signedIn || (
         <Login
           signedIn={signedIn}
@@ -88,47 +98,6 @@ const Layout = ({ children }) => {
           passwordError={passwordError}
         />
       )}
-      <Header
-        signedIn={signedIn}
-        siteTitle={data.site.siteMetadata?.title || `Title`}
-        onSignOut={handleSignOut}
-      />
-      <div className="p-5 max-w-screen-lg mx-auto text-center">
-        <main>{children}</main>
-        <footer
-          style={{
-            marginTop: `2rem`,
-          }}
-        >
-          © {new Date().getFullYear()} Sergio Cutone
-          <div className="mx-auto mt-2">
-            <StaticImage
-              src="../images/gatsby.png"
-              alt="Gatsby logo"
-              title="Gatsby logo"
-              placeholder="blurred"
-              layout="fullWidth"
-              className="inline-block w-10 h-10 mr-2 rounded-full bg-white"
-            />
-            <StaticImage
-              src="../images/tailwindcss.png"
-              alt="Tailwind CSS logo"
-              title="Tailwind CSS logo"
-              placeholder="blurred"
-              layout="fullWidth"
-              className="inline-block w-10 h-10 mr-2 rounded-full bg-white"
-            />
-            <StaticImage
-              src="../images/firebase.png"
-              alt="Firebase logo"
-              title="Firebase logo"
-              placeholder="blurred"
-              layout="fullWidth"
-              className="inline-block w-10 h-10 rounded-full bg-white"
-            />
-          </div>
-        </footer>
-      </div>
     </>
   )
 }
