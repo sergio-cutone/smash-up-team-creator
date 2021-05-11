@@ -1,3 +1,27 @@
+
+npm install
+
+create services/fb-config.js
+
+const config = {
+  apiKey: "<API KEY>",
+  authDomain: "<AUTH DOMAIN>",
+  databaseURL: "<DATABASE URL>",
+  projectId: "<PROJECT ID>",
+  storageBucket: "<STORAGE BUCKET>",
+  messagingSenderId: "<MESSAGING SENDER ID>",
+  appId: "<APP ID>",
+}
+module.exports = config
+
+create services/fb-collection.js
+
+const fbCollection = "<NAME OF COLLECTION>"
+module.exports = fbCollection
+
+
+gatsby develop
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.com">
