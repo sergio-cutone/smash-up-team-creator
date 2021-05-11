@@ -7,7 +7,6 @@
 
 import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
-import { StaticImage } from "gatsby-plugin-image"
 import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import Footer from "./footer"
@@ -38,7 +37,7 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     signedIn ? signedInState(true) : signedInState(false)
-  }, [signedIn])
+  }, [])
 
   const handlePassword = value => {
     passwordState(value)
@@ -77,7 +76,7 @@ const Layout = ({ children }) => {
       })
   }
   return (
-    <>
+    <div>
       <Header
         signedIn={signedIn}
         siteTitle={data.site.siteMetadata?.title || `Title`}
@@ -98,7 +97,7 @@ const Layout = ({ children }) => {
           passwordError={passwordError}
         />
       )}
-    </>
+    </div>
   )
 }
 

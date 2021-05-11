@@ -4,8 +4,8 @@ import { StaticImage } from "gatsby-plugin-image"
 const Footer = () => {
   return (
     <footer className="text-center py-3">
-      © {new Date().getFullYear()} Sergio Cutone
-      <div className="mx-auto mt-2">
+      <div>© {new Date().getFullYear()} Sergio Cutone</div>
+      <div className="mx-auto text-center">
         <StaticImage
           src="../images/gatsby.png"
           alt="Gatsby logo"

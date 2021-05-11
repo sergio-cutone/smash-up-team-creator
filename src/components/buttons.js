@@ -52,11 +52,11 @@ const Buttons = () => {
 
   return (
     <div className="text-center mb-5 p-4 rounded-xl md:shadow-lg bg-white">
-      <h2>
+      <h1>
         {numberOfPlayersSelected
           ? numberOfPlayersSelected + " Players Selected"
           : "Select Number of Players"}
-      </h2>
+      </h1>
       {errorState ? (
         <div className="text-red-600">Player Names Required</div>
       ) : (
