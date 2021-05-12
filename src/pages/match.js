@@ -38,9 +38,6 @@ const Play = ({ location }) => {
   }
 
   useEffect(() => {
-    db.settings({
-      timestampsInSnapshots: true,
-    })
     db.collection(fbCollection)
       .add({ teams: setStorage() })
       .then(function (docRef) {
