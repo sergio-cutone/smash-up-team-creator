@@ -79,8 +79,8 @@ const FactionList = () => {
   }
 
   return (
-    <div>
-      <h2>Get To Know Your Factions</h2>
+    <>
+      <h1>Get To Know Your Factions</h1>
       <div className="text-left">
         <span>Sort by: </span>
         <select
@@ -112,7 +112,7 @@ const FactionList = () => {
           </Link>
         ))}
       </div>
-    </div>
+    </>
   )
 }
 

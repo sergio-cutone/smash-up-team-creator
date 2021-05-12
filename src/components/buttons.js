@@ -32,7 +32,7 @@ const Buttons = () => {
         inputList[i].error = false
       }
     })
-    isValid = isValid ? createTeams() : ""
+    isValid && createTeams()
   }
 
   const handleInput = function handlePlayerInputChange(input, index) {

@@ -37,7 +37,7 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     signedIn ? signedInState(true) : signedInState(false)
-  }, [])
+  }, [signedIn])
 
   const handlePassword = value => {
     passwordState(value)
@@ -76,7 +76,7 @@ const Layout = ({ children }) => {
       })
   }
   return (
-    <div>
+    <>
       <Header
         signedIn={signedIn}
         siteTitle={data.site.siteMetadata?.title || `Title`}
@@ -88,7 +88,6 @@ const Layout = ({ children }) => {
       <Footer />
       {signedIn || (
         <Login
-          signedIn={signedIn}
           signInError={signInError}
           onEmail={handleEmail}
           onPassword={handlePassword}
@@ -97,7 +96,7 @@ const Layout = ({ children }) => {
           passwordError={passwordError}
         />
       )}
-    </div>
+    </>
   )
 }
 

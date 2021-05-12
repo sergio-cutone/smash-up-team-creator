@@ -7,7 +7,9 @@ import { navigate } from "gatsby"
 const fbCollection = require("../services/fb-collection")
 
 const Play = ({ location }) => {
-  let teamsFactions = location.state.inputList
+  const { state = {} } = location
+  const { inputList } = state
+  let teamsFactions = inputList ? inputList : []
   const [winnerState, stateWinner] = useState()
   const docId = useRef()
   var db = firestore.firestore()
@@ -49,6 +51,7 @@ const Play = ({ location }) => {
         console.error("Error adding document: ", error)
       })
     return () => {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [db])
 
   const setWinner = function setWinner(firebaseDocumentId, teamId) {

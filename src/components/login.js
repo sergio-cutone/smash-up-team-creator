@@ -18,6 +18,7 @@ const Login = ({
       emailState(email)
       onEmail(email)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   const handleEmail = value => {
     emailState(value)
@@ -31,19 +32,19 @@ const Login = ({
   }
 
   return (
-    <>
-      <div className="fixed w-full h-full bg-black bg-opacity-80 z-50 top-0 left-0 p-5 text-center">
-        <div className="max-w-xl bg-white p-3 rounded mx-auto border-4 border-blue-500">
-          <StaticImage
-            src="../images/smashup-logo.png"
-            alt="SmashUp!"
-            placeholder="blurred"
-            layout="fixed"
-            width={240}
-            className="mb-2 mx-auto"
-          />
-          <p className="text-xl mb-3 font-bold">Firebase Sign In</p>
-          <p className={`mb-3 ${emailError ? "text-red-500" : "text-black"}`}>
+    <section className="fixed w-full h-full bg-black bg-opacity-80 z-50 top-0 left-0 p-5 text-center">
+      <div className="max-w-xl bg-white p-3 rounded mx-auto border-4 border-blue-500">
+        <StaticImage
+          src="../images/smashup-logo.png"
+          alt="SmashUp!"
+          placeholder="blurred"
+          layout="fixed"
+          width={240}
+          className="mb-2 mx-auto"
+        />
+        <div className="text-xl mb-3 font-bold">Firebase Sign In</div>
+        <form>
+          <div className={`mb-3 ${emailError ? "text-red-500" : "text-black"}`}>
             Email
             <br />
             <input
@@ -55,8 +56,8 @@ const Login = ({
               onChange={e => handleEmail(e.target.value)}
               value={email}
             />
-          </p>
-          <p
+          </div>
+          <div
             className={`mb-3 ${passwordError ? "text-red-500" : "text-black"}`}
           >
             Password
@@ -70,19 +71,19 @@ const Login = ({
               onChange={e => onPassword(e.target.value)}
               onKeyDown={handleKeyDown}
             />
-          </p>
-          {!signInError || signInError}
-          <p className="mt-3">
-            <button
-              className="hover:bg-blue-300 bg-blue-500 py-2 px-4 rounded text-white"
-              onClick={e => onSignIn()}
-            >
-              Sign In
-            </button>
-          </p>
+          </div>
+        </form>
+        {!signInError || signInError}
+        <div className="mt-3">
+          <button
+            className="hover:bg-blue-300 bg-blue-500 py-2 px-4 rounded text-white"
+            onClick={e => onSignIn()}
+          >
+            Sign In
+          </button>
         </div>
       </div>
-    </>
+    </section>
   )
 }
 export default Login

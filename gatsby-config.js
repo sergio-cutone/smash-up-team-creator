@@ -1,10 +1,11 @@
 module.exports = {
+  pathPrefix: `/smash-up`,
   flags: {
     DEV_SSR: false,
   },
   siteMetadata: {
     title: `SmashUp! Team Generator`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `Set your player count, SmashUp your teams and get ready for battle!`,
     author: `@gatsbyjs`,
   },
   plugins: [
@@ -43,10 +44,10 @@ module.exports = {
         name: `gatsby-starter-default`,
         short_name: `starter`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#1e90ff`,
+        theme_color: `#1e90ff`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/icon.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-gatsby-cloud`,
@@ -61,7 +62,7 @@ module.exports = {
         display: `standalone`,
         icon: `src/images/icon.png`,
       },
-    }, // To learn more, visit: https://gatsby.dev/offline // this (optional) plugin enables Progressive Web App + Offline functionality
-    `gatsby-plugin-offline`,
+    },
+    "gatsby-plugin-offline", // To learn more, visit: https://gatsby.dev/offline // this (optional) plugin enables Progressive Web App + Offline functionality
   ],
 }

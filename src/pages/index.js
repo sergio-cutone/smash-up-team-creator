@@ -1,5 +1,5 @@
 import React from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import Buttons from "../components/buttons"
 import FactionList from "../components/faction-list"
 import Layout from "../components/layout"
@@ -7,7 +7,7 @@ import Layout from "../components/layout"
 const Home = ({ data }) => {
   return (
     <>
-      <SEO title="Home" />
+      <Seo title="Home" />
       <div className="text-center">
         <Buttons />
         <FactionList />

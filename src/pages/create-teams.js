@@ -7,9 +7,14 @@ import { css } from "@emotion/react"
 import { navigate } from "gatsby"
 
 const CreateTeams = ({ data, location }) => {
-  const numberOfPlayers = location.state.numberOfPlayersSelected
-  const cleanList = location.state.cleanList
-  const [inputList, setInputList] = useState(cleanList)
+  const { state = {} } = location
+  const { numberOfPlayersSelected } = state
+  const { cleanList } = state
+
+  const numberOfPlayers = numberOfPlayersSelected ? numberOfPlayersSelected : 0
+  const cleanListState = cleanList ? cleanList : []
+
+  const [inputList, setInputList] = useState(cleanListState)
   const [factionState, setFactions] = useState([])
   const [updateState, updateTeams] = useState(false)
 
@@ -22,6 +27,7 @@ const CreateTeams = ({ data, location }) => {
     }
     setInputList(inputList)
     return () => {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const smashUp = function smashUpFactions(factionList) {
@@ -93,6 +99,7 @@ const CreateTeams = ({ data, location }) => {
         </div>
       )
     }
+    return false
   })
 
   return (

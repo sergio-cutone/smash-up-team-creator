@@ -11,6 +11,7 @@ const Stats = () => {
   useEffect(() => {
     getMatches()
     return () => {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const getMatches = function getMatchesFromFirebase() {
@@ -44,7 +45,7 @@ const Stats = () => {
   }
 
   const displayMatches = matchState.map((match, i) => {
-    let date = String(match.data.timestamp.toDate())
+    const date = String(match.data.timestamp.toDate())
     const getTeams = Object.entries(match.data.teams).map(a => a[1])
     const teams = getTeams.map((team, i) => (
       <div
