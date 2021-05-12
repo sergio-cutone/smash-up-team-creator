@@ -27,7 +27,8 @@
 
 **Add the Firebase Collection file with your collection name:**
 
-> create services/fb-collection.js\
+> services/fb-collection.js
+
 > const fbCollection = "<-- NAME OF COLLECTION -->"\
 > module.exports = fbCollection
 
