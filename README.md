@@ -29,6 +29,8 @@
 
 > services/fb-collection.js
 
+**Content**
+
 > const fbCollection = "<-- NAME OF COLLECTION -->"\
 > module.exports = fbCollection
 
